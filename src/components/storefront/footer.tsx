@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+export function SiteFooter() {
+  return <footer className="footer"><div className="container-wide footer-main"><div className="footer-brand"><Link href="/" className="brand brand-footer" aria-label="Maison Nova, accueil">MAISON <span>NOVA.</span></Link><p>Une maison à vivre. Une boutique fictive pour imaginer le commerce de demain.</p><span className="footer-note">Une démonstration conçue par AlteractWeb.</span></div><div><h2>Explorer</h2><Link href="/boutique">La boutique</Link><Link href="/boutique?categorie=decoration">Décoration</Link><Link href="/boutique?categorie=mobilier">Mobilier</Link><Link href="/boutique?categorie=art-de-la-table">Art de la table</Link></div><div><h2>Informations</h2><Link href="/contact">Contact</Link><Link href="/faq">Questions fréquentes</Link><Link href="/panier">Panier</Link><Link href="/favoris">Favoris</Link></div><div className="footer-end"><h2>MAISON NOVA</h2><p>Des idées pour une maison qui vous ressemble.</p><span>Grand-Bassam · Côte d&apos;Ivoire</span><ArrowUpRight aria-hidden="true" /></div></div><div className="container-wide footer-bottom"><span>Maison Nova · Démonstration</span><span>Aucune vente ni collecte de données personnelles</span></div></footer>;
+}
