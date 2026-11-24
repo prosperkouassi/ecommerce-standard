@@ -1,63 +1,87 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Gift, Heart, PackageCheck, RotateCcw, Sparkles } from "lucide-react";
-import { CategoryCard, ProductGrid, PromoBanner, SectionHeading } from "@/components/storefront/cards";
-import { categories, products } from "@/data/catalog";
+import { ArrowRight } from "lucide-react";
+import { ProductGrid } from "@/components/storefront/cards";
+import { products } from "@/data/catalog";
+
+const univers = [
+  { name: "Mobilier", subtitle: "Des pièces qui donnent le ton", href: "/boutique?categorie=mobilier", image: "/images/home/salon.jpg", alt: "Salon lumineux aux matières naturelles" },
+  { name: "Luminaires", subtitle: "La lumière change tout", href: "/boutique?categorie=luminaires", image: "/images/home/luminaire.jpg", alt: "Suspension au-dessus d'une table dans un intérieur contemporain" },
+  { name: "Décoration", subtitle: "Le détail qui vous ressemble", href: "/boutique?categorie=decoration", image: "/images/home/decoration.jpg", alt: "Salon avec cheminée et objets de décoration" },
+];
 
 export default function Home() {
   return (
-    <main id="contenu">
-      <section className="hero container-wide" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <span className="eyebrow"><Sparkles size={14} aria-hidden="true" /> UNE MAISON QUI VOUS RESSEMBLE</span>
-          <h1 id="hero-title">L&apos;art de vivre, <em>à votre façon.</em></h1>
-          <p>Des pièces singulières, des matières chaleureuses et le plaisir de faire de chaque instant un moment à soi.</p>
-          <Link className="button button-dark" href="/boutique">Découvrir la collection <ArrowRight size={18} aria-hidden="true" /></Link>
-          <div className="hero-footnote"><span>01 / 03</span><span>Collection Maison Nova · Édition démo</span></div>
+    <main id="contenu" className="nova-home">
+      <section className="nova-hero" aria-labelledby="nova-hero-title">
+        <Image src="/images/home/hero.jpg" alt="Salon baigné de lumière avec fauteuils et matières chaleureuses" fill priority sizes="100vw" className="nova-hero-photo" />
+        <div className="nova-hero-inner">
+          <div className="nova-hero-panel">
+            <span className="nova-kicker">MAISON NOVA · LA BOUTIQUE DÉMO</span>
+            <h1 id="nova-hero-title">La maison, <span>à votre image</span></h1>
+            <p>Des objets et du mobilier pour imaginer un intérieur qui ne ressemble qu’à vous.</p>
+            <Link href="/boutique" className="nova-cta">Explorer la boutique <ArrowRight size={20} aria-hidden="true" /></Link>
+            <small>Une collection fictive pour découvrir notre expérience e-commerce.</small>
+          </div>
         </div>
-        <div className="hero-visual"><Image src="/images/hero.svg" alt="Visuel neutre temporaire de la collection Maison Nova" fill priority sizes="(max-width: 800px) 100vw, 55vw" /></div>
-        <div className="hero-caption">Des essentiels choisis avec soin <span>↗</span></div>
+        <div className="nova-hero-index" aria-hidden="true">01 <span>/</span> MAISON NOVA</div>
       </section>
 
-      <section className="section container-wide" aria-labelledby="categories-title">
-        <SectionHeading id="categories-title" eyebrow="L'UNIVERS NOVA" title={<>Des envies, <em>des découvertes</em></>} description="Explorez nos univers imaginaires, imaginés pour une maison pleine de vie." />
-        <div className="category-grid">{categories.map((category) => <CategoryCard key={category.slug} category={category} />)}</div>
+      <section className="nova-univers nova-shell" aria-labelledby="nova-univers-title">
+        <div className="nova-section-intro">
+          <span className="nova-kicker">UN INTÉRIEUR À COMPOSER</span>
+          <h2 id="nova-univers-title">Chaque pièce a son histoire</h2>
+          <p>Un fauteuil pour ralentir, une lumière pour se retrouver, un objet qui fait sourire. À vous de choisir l’ambiance.</p>
+        </div>
+        <div className="nova-univers-grid">
+          {univers.map((item, index) => (
+            <Link className="nova-univers-card" href={item.href} key={item.name}>
+              <div className="nova-univers-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 740px) 100vw, 33vw" /></div>
+              <div className="nova-univers-meta"><span>0{index + 1} / UNIVERS</span><ArrowRight size={21} aria-hidden="true" /></div>
+              <h3>{item.name}</h3>
+              <p>{item.subtitle}</p>
+            </Link>
+          ))}
+        </div>
+        <Link className="nova-inline-link" href="/boutique">Voir les 50 produits de démonstration <ArrowRight size={20} aria-hidden="true" /></Link>
       </section>
 
-      <section className="section section-tinted" aria-labelledby="new-title"><div className="container-wide">
-        <SectionHeading id="new-title" eyebrow="TOUT JUSTE ARRIVÉS" title={<>Les nouvelles <em>inspirations</em></>} description="Des détails qui changent tout, à découvrir au fil des saisons." action={{ label: "Voir le catalogue", href: "/boutique" }} />
-        <ProductGrid products={products.filter((product) => product.isNew).slice(0, 4)} />
-      </div></section>
-
-      <section className="editorial container-wide" aria-labelledby="editorial-title">
-        <div className="editorial-image"><Image src="/images/editorial.svg" alt="Visuel neutre temporaire de l'univers Maison Nova" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
-        <div className="editorial-copy"><span className="eyebrow">LE SAVOIR-FAIRE DU QUOTIDIEN</span><h2 id="editorial-title">Le beau se cache dans <em>les petites choses.</em></h2><p>Une lumière douce. Une tasse préférée. Un coin à soi. Maison Nova imagine une sélection fictive d&apos;objets qui rend chaque jour un peu plus beau.</p><Link className="text-link" href="/boutique">Explorer la sélection <ArrowRight size={18} aria-hidden="true" /></Link></div>
+      <section className="nova-products nova-shell" aria-labelledby="nova-products-title">
+        <div className="nova-products-heading">
+          <div>
+            <span className="nova-kicker">APERÇU DU CATALOGUE · PRODUITS FICTIFS</span>
+            <h2 id="nova-products-title">Quelques pièces à découvrir</h2>
+            <p>Des fiches de démonstration pour essayer les coloris, les favoris et le panier. Les visuels produits sont provisoires.</p>
+          </div>
+          <Link className="nova-inline-link" href="/boutique">Explorer tous les produits <ArrowRight size={20} aria-hidden="true" /></Link>
+        </div>
+        <ProductGrid products={[products[1], products[2], products[4], products[6]]} />
       </section>
 
-      <section className="section container-wide" aria-labelledby="popular-title">
-        <SectionHeading id="popular-title" eyebrow="VOS COUPS DE CŒUR" title={<>Les plus <em>aimés</em></>} description="Nos favoris de démonstration, pour trouver votre prochaine inspiration." action={{ label: "Tout voir", href: "/boutique" }} />
-        <ProductGrid products={products.filter((product) => product.isBestseller).slice(0, 4)} />
+      <section className="nova-story" aria-labelledby="nova-story-title">
+        <div className="nova-story-image"><Image src="/images/home/editorial.jpg" alt="Canapé et table basse dans un salon ouvert sur un jardin" fill sizes="(max-width: 800px) 100vw, 58vw" /></div>
+        <div className="nova-story-content">
+          <span className="nova-kicker">VIVRE CHEZ SOI</span>
+          <h2 id="nova-story-title">Le beau se vit tous les jours</h2>
+          <p>Un endroit pour se poser. Une matière que l’on aime toucher. Une lumière qui rend la fin de journée plus douce. C’est dans ces instants que la maison devient la vôtre.</p>
+          <Link className="nova-inline-link" href="/boutique">Parcourir les collections <ArrowRight size={20} aria-hidden="true" /></Link>
+        </div>
       </section>
 
-      <section className="container-wide promotion-section"><PromoBanner /></section>
-
-      <section className="section container-wide" aria-labelledby="offers-title">
-        <SectionHeading id="offers-title" eyebrow="PRIX DE DÉMONSTRATION" title={<>Nos offres <em>fictives</em></>} description="Des prix barrés illustratifs : aucune promotion commerciale réelle." action={{ label: "Explorer le catalogue", href: "/boutique" }} />
-        <ProductGrid products={products.filter((product) => product.compareAtPrice).slice(0, 4)} />
+      <section className="nova-selection nova-shell" aria-labelledby="nova-selection-title">
+        <div className="nova-selection-copy">
+          <span className="nova-kicker">LA SÉLECTION MAISON NOVA</span>
+          <h2 id="nova-selection-title">Une idée prend forme chez vous</h2>
+          <p>Explorez le catalogue fictif, choisissez un coloris et essayez le panier. Tout le parcours est une démonstration : aucune commande n’est transmise.</p>
+          <Link href="/boutique" className="nova-cta">Découvrir les produits <ArrowRight size={20} aria-hidden="true" /></Link>
+        </div>
+        <div className="nova-selection-photo"><Image src="/images/home/final.jpg" alt="Salon clair avec canapé et mobilier aux lignes douces" fill sizes="(max-width: 800px) 100vw, 52vw" /></div>
       </section>
 
-      <section className="section benefits container-wide" aria-label="Les engagements de la boutique de démonstration">
-        <div><PackageCheck aria-hidden="true" /><h3>Une sélection inspirante</h3><p>Des objets fictifs imaginés pour cette démonstration.</p></div>
-        <div><Heart aria-hidden="true" /><h3>Le souci du détail</h3><p>Un univers pensé pour le plaisir de parcourir.</p></div>
-        <div><Gift aria-hidden="true" /><h3>Des idées à offrir</h3><p>Une collection pour imaginer vos prochains cadeaux.</p></div>
-        <div><RotateCcw aria-hidden="true" /><h3>Sans engagement</h3><p>Aucune commande ni transaction n&apos;est effectuée ici.</p></div>
-      </section>
-
-      <section className="newsletter" aria-labelledby="newsletter-title"><div className="container-wide newsletter-inner"><div><span className="eyebrow">ON GARDE LE CONTACT ?</span><h2 id="newsletter-title">Un peu de <em>beau</em> dans votre boîte mail.</h2><p>La newsletter arrivera dans une prochaine version. Aucun e-mail n&apos;est collecté sur cette démo.</p></div><div className="newsletter-soon">Inscription bientôt disponible <ArrowRight size={18} aria-hidden="true" /></div></div></section>
-
-      <section className="section container-wide home-extra">
-        <div><span className="eyebrow">AVIS DE DÉMONSTRATION</span><h2>Une expérience pensée <em>pour vous</em></h2><blockquote>« Une boutique agréable à parcourir, jusque dans les détails. »</blockquote><p>Avis entièrement fictif · aucun témoignage client réel</p><Link className="text-link" href="/avis-clients">En savoir plus →</Link></div>
-        <div><span className="eyebrow">LE JOURNAL</span><h2>Quelques idées <em>pour la maison</em></h2><p>Articles fictifs et inspirations pour prolonger la découverte.</p><Link className="text-link" href="/blog">Lire les articles →</Link><span className="eyebrow home-faq-label">BESOIN D&apos;AIDE ?</span><p>Consultez les réponses sur la boutique et ses scénarios de démonstration.</p><Link className="text-link" href="/faq">Questions fréquentes →</Link></div>
+      <section className="nova-endnote nova-shell" aria-label="À propos de cette démonstration">
+        <span>MAISON NOVA / DÉMONSTRATION</span>
+        <p>Photographies d’ambiance illustratives · Produits fictifs · Aucun paiement réel.</p>
+        <Link href="/a-propos">Découvrir le projet <ArrowRight size={18} aria-hidden="true" /></Link>
       </section>
     </main>
   );
