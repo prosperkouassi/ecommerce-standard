@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Maison Nova — boutique fictive
+
+Cette démonstration utilise 50 produits fictifs et des placeholders neutres. Elle ne contient ni serveur de commandes ni service de paiement ou de livraison réel.
+
+```bash
+npm ci
+npm run dev
+npx tsc --noEmit
+npm run lint
+npm run build
+```
+
+Le panier, les favoris et l'historique simulé sont stockés dans le navigateur. Pour réinitialiser la démo, effacer le stockage local `maison-nova-demo`. Utiliser seulement des coordonnées fictives lors du checkout. La configuration de démonstration des livraisons et paiements est dans `src/config/commerce.ts`. Voir `FUTURE_INTEGRATIONS.md` pour les étapes de production.

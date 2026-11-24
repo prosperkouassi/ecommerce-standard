@@ -15,7 +15,7 @@ export default function Home() {
           <Link className="button button-dark" href="/boutique">Découvrir la collection <ArrowRight size={18} aria-hidden="true" /></Link>
           <div className="hero-footnote"><span>01 / 03</span><span>Collection Maison Nova · Édition démo</span></div>
         </div>
-        <div className="hero-visual"><Image src="/images/hero.svg" alt="Illustration d'un intérieur chaleureux avec fauteuil, lampe et plantes" fill priority sizes="(max-width: 800px) 100vw, 55vw" /></div>
+        <div className="hero-visual"><Image src="/images/hero.svg" alt="Visuel neutre temporaire de la collection Maison Nova" fill priority sizes="(max-width: 800px) 100vw, 55vw" /></div>
         <div className="hero-caption">Des essentiels choisis avec soin <span>↗</span></div>
       </section>
 
@@ -30,7 +30,7 @@ export default function Home() {
       </div></section>
 
       <section className="editorial container-wide" aria-labelledby="editorial-title">
-        <div className="editorial-image"><Image src="/images/editorial.svg" alt="Illustration d'une table dressée et d'objets de décoration" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
+        <div className="editorial-image"><Image src="/images/editorial.svg" alt="Visuel neutre temporaire de l'univers Maison Nova" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
         <div className="editorial-copy"><span className="eyebrow">LE SAVOIR-FAIRE DU QUOTIDIEN</span><h2 id="editorial-title">Le beau se cache dans <em>les petites choses.</em></h2><p>Une lumière douce. Une tasse préférée. Un coin à soi. Maison Nova imagine une sélection fictive d&apos;objets qui rend chaque jour un peu plus beau.</p><Link className="text-link" href="/boutique">Explorer la sélection <ArrowRight size={18} aria-hidden="true" /></Link></div>
       </section>
 
@@ -41,6 +41,11 @@ export default function Home() {
 
       <section className="container-wide promotion-section"><PromoBanner /></section>
 
+      <section className="section container-wide" aria-labelledby="offers-title">
+        <SectionHeading id="offers-title" eyebrow="PRIX DE DÉMONSTRATION" title={<>Nos offres <em>fictives</em></>} description="Des prix barrés illustratifs : aucune promotion commerciale réelle." action={{ label: "Explorer le catalogue", href: "/boutique" }} />
+        <ProductGrid products={products.filter((product) => product.compareAtPrice).slice(0, 4)} />
+      </section>
+
       <section className="section benefits container-wide" aria-label="Les engagements de la boutique de démonstration">
         <div><PackageCheck aria-hidden="true" /><h3>Une sélection inspirante</h3><p>Des objets fictifs imaginés pour cette démonstration.</p></div>
         <div><Heart aria-hidden="true" /><h3>Le souci du détail</h3><p>Un univers pensé pour le plaisir de parcourir.</p></div>
@@ -49,6 +54,11 @@ export default function Home() {
       </section>
 
       <section className="newsletter" aria-labelledby="newsletter-title"><div className="container-wide newsletter-inner"><div><span className="eyebrow">ON GARDE LE CONTACT ?</span><h2 id="newsletter-title">Un peu de <em>beau</em> dans votre boîte mail.</h2><p>La newsletter arrivera dans une prochaine version. Aucun e-mail n&apos;est collecté sur cette démo.</p></div><div className="newsletter-soon">Inscription bientôt disponible <ArrowRight size={18} aria-hidden="true" /></div></div></section>
+
+      <section className="section container-wide home-extra">
+        <div><span className="eyebrow">AVIS DE DÉMONSTRATION</span><h2>Une expérience pensée <em>pour vous</em></h2><blockquote>« Une boutique agréable à parcourir, jusque dans les détails. »</blockquote><p>Avis entièrement fictif · aucun témoignage client réel</p><Link className="text-link" href="/avis-clients">En savoir plus →</Link></div>
+        <div><span className="eyebrow">LE JOURNAL</span><h2>Quelques idées <em>pour la maison</em></h2><p>Articles fictifs et inspirations pour prolonger la découverte.</p><Link className="text-link" href="/blog">Lire les articles →</Link><span className="eyebrow home-faq-label">BESOIN D&apos;AIDE ?</span><p>Consultez les réponses sur la boutique et ses scénarios de démonstration.</p><Link className="text-link" href="/faq">Questions fréquentes →</Link></div>
+      </section>
     </main>
   );
 }

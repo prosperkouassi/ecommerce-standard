@@ -1,0 +1,6 @@
+export type Article={slug:string;title:string;excerpt:string;body:string[];published:string};
+export const articles:Article[]=[
+ {slug:'creer-un-interieur-chaleureux',title:'Créer un intérieur chaleureux',excerpt:'Quelques idées fictives pour composer un espace qui vous ressemble.',published:'2026-11-01',body:['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra lorem vel tellus interdum, a accumsan ipsum mollis.','Integer et mi nec risus luctus dictum. Proin tincidunt, felis ut euismod sollicitudin, nibh lectus condimentum tortor, vitae malesuada velit est at turpis.']},
+ {slug:'les-matieres-du-quotidien',title:'Les matières du quotidien',excerpt:'Textures et couleurs pour inspirer une maison accueillante.',published:'2026-11-04',body:['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non leo vitae nisl volutpat facilisis.','Sed tristique consequat quam, sed consequat ante vehicula a. Mauris malesuada posuere augue.']},
+ {slug:'prendre-le-temps-de-recevoir',title:'Prendre le temps de recevoir',excerpt:'Une table imaginée pour les moments partagés.',published:'2026-11-07',body:['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a felis sem.','Curabitur tincidunt purus non nisl lacinia, ac gravida sem consequat.']},
+];

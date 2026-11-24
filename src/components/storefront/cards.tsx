@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { ProductActions } from "@/components/catalog/actions";
 import { type Category, type Product, formatPrice } from "@/data/catalog";
 
 export function SectionHeading({ id, eyebrow, title, description, action }: { id: string; eyebrow: string; title: React.ReactNode; description?: string; action?: { label: string; href: string } }) {
@@ -12,7 +13,7 @@ export function CategoryCard({ category }: { category: Category }) {
 }
 
 export function ProductCard({ product }: { product: Product }) {
-  return <article className="product-card"><div className="product-image"><Image src={product.image} alt={product.imageAlt} fill sizes="(max-width: 650px) 50vw, (max-width: 1000px) 33vw, 25vw" />{product.isNew && <span className="product-badge">Nouveau</span>}{!product.available && <span className="product-badge muted">Indisponible</span>}</div><div className="product-copy"><span className="product-category">{product.category.replaceAll("-", " ")}</span><h3>{product.name}</h3><p className="product-price">{formatPrice(product.price)} {product.compareAtPrice && <s>{formatPrice(product.compareAtPrice)}</s>}</p><p className="product-availability">{product.available ? "Découvrir dans le catalogue" : "Article indisponible"}</p></div></article>;
+  return <article className="product-card"><div className="product-image"><Link className="product-image-link" href={`/produit/${product.slug}`} aria-label={`Voir ${product.name}`}><Image src={product.image} alt={product.imageAlt} fill sizes="(max-width: 650px) 50vw, (max-width: 1000px) 33vw, 25vw" /></Link><ProductActions id={product.id} />{product.isNew && <span className="product-badge">Nouveau</span>}{!product.available && <span className="product-badge muted">Indisponible</span>}</div><div className="product-copy"><span className="product-category">{product.category.replaceAll("-", " ")}</span><h3><Link href={`/produit/${product.slug}`}>{product.name}</Link></h3><p className="product-price">{formatPrice(product.price)} {product.compareAtPrice && <s>{formatPrice(product.compareAtPrice)}</s>}</p><p className="product-availability">{product.available ? "Voir la fiche produit" : "Article indisponible"}</p></div></article>;
 }
 
 export function ProductGrid({ products }: { products: Product[] }) {
